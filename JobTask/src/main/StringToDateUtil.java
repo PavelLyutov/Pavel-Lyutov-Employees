@@ -9,10 +9,9 @@ import java.util.List;
 
 public class StringToDateUtil {
     private static final String[] formats = {
-            "yyyy-MM-dd","yyyy:MM:dd","yyyyMMdd", };
+            "yyyy-MM-dd","yyyy:MM:dd","yyyyMMdd","dd/MM/yyyy","dd-MMM-yyyy" };
     private List<SimpleDateFormat> sdfList;
 
-    // set the List of Format's you want to use
     public StringToDateUtil() throws Exception {
         sdfList=new ArrayList<>();
         for (int i = 0; i < formats.length; i++) {

@@ -13,11 +13,7 @@ import java.util.stream.Collectors;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Demo {
-
-
-
     public static void main(String[] args) {
-
 
         ArrayList<EmployeeSchedule> allEmployeeSchedules = null;
         try {
