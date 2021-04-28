@@ -1,7 +1,9 @@
 package main;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -11,31 +13,18 @@ import java.util.stream.Collectors;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Demo {
+
+
+
     public static void main(String[] args) {
-        ArrayList<EmployeeSchedule> allEmployeeSchedules = new ArrayList<>(); // employees information
 
-        File f = new File("test.txt");
-        try (Scanner sc = new Scanner(f);){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-              String[] values = line.split(", ");
-                int id = Integer.parseInt(values[0]);
-                int projId = Integer.parseInt(values[1]);
-                LocalDate start = LocalDate.parse(values[2]);
-                LocalDate end;
-                if(values[3].equalsIgnoreCase("NULL")){
-                     end = LocalDate.now();
-                }else{
-                    end = LocalDate.parse(values[3]);
-                }
-                EmployeeSchedule em = new EmployeeSchedule(id,projId,start,end);
-                allEmployeeSchedules.add(em);
-            }
 
-        } catch (FileNotFoundException e) {
+        ArrayList<EmployeeSchedule> allEmployeeSchedules = null;
+        try {
+            allEmployeeSchedules = Reader.readFromFile("test.txt");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         ArrayList<Pair> pairs = getAllPairsOfWorkers(allEmployeeSchedules);
         for (Pair p: pairs
              ) {
@@ -44,8 +33,12 @@ public class Demo {
         }
 
         Collections.sort(pairs);
+        for (EmployeeSchedule e: allEmployeeSchedules
+             ) {
+            System.out.println(e);
+        }
 
-        System.out.println(pairs.get(0) + " are the employees worked for longest time in a team");
+       // System.out.println(pairs.get(0) + " are the employees worked for longest time in a team");
     }
 
     public static ArrayList<Pair> getAllPairsOfWorkers(ArrayList<EmployeeSchedule> a){
@@ -124,5 +117,7 @@ public class Demo {
         return days;
 
     }
+
+
 
 }

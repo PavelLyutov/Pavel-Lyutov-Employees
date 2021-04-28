@@ -38,16 +38,6 @@ public class Pair implements Comparable<Pair>{
 
     @Override
     public int compareTo(Pair o) {
-        int x;
-        if(this.getTotalDays()>o.getTotalDays()){
-            x= -1;
-        }else{
-            if(this.getTotalDays()==o.getTotalDays()){
-                x= 0;
-            }else{
-                x= 1;
-            }
-        }
-        return x;
+        return (int)(o.getTotalDays()-this.getTotalDays());
     }
 }
